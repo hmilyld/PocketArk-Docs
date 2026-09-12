@@ -1,0 +1,70 @@
+---
+title: PocketArk 文档
+description: PocketArk 桌面应用基础框架文档：从 clone 到改名，从第一个插件到打包发布。
+template: splash
+hero:
+  title: 把桌面工具箱，做成你自己的软件。
+  tagline: PocketArk 是一个可复用的桌面应用基础框架（Tauri 2 + Vue 3 + TypeScript + Tailwind 4）。窗口、托盘、导航、主题、SQLite、设置、日志、错误、HTTP、在线更新全部就绪；你只需要写工具本身。
+  actions:
+    - text: 从零开始
+      link: /start/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: 开发第一个插件
+      link: /plugins/create/
+      icon: add-document
+      variant: secondary
+    - text: 查看架构
+      link: /architecture/overview/
+      icon: open-book
+      variant: minimal
+---
+
+import CapabilityMatrix from '../../components/CapabilityMatrix.astro';
+
+<p class="ark-section-title">推荐路径</p>
+
+<div class="ark-cards ark-reveal">
+  <a class="ark-card" href="/start/installation/">
+    <span class="ark-card__kicker">01 · 起步</span>
+    <h3 class="ark-card__title">安装并运行</h3>
+    <p class="ark-card__desc">准备 Node / pnpm / Rust，首次编译并在本机跑起示例应用。</p>
+  </a>
+  <a class="ark-card" href="/start/scaffold/">
+    <span class="ark-card__kicker">02 · 改造</span>
+    <h3 class="ark-card__title">变成你的软件</h3>
+    <p class="ark-card__desc">一键改名、换双源图标、删除示例插件，得到属于你的应用。</p>
+  </a>
+  <a class="ark-card" href="/plugins/create/">
+    <span class="ark-card__kicker">03 · 扩展</span>
+    <h3 class="ark-card__title">开发第一个插件</h3>
+    <p class="ark-card__desc">用脚手架生成骨架，改写 plugin.json 与页面，前端后端自动注册。</p>
+  </a>
+</div>
+
+<CapabilityMatrix />
+
+<p class="ark-section-title">接着读</p>
+
+<div class="ark-cards ark-reveal">
+  <a class="ark-card" href="/architecture/overview/">
+    <span class="ark-card__kicker">架构</span>
+    <h3 class="ark-card__title">目录与启动顺序</h3>
+    <p class="ark-card__desc">读懂框架分层、启动链路，以及扩展时哪些代码只引用、不修改。</p>
+  </a>
+  <a class="ark-card" href="/plugins/overview/">
+    <span class="ark-card__kicker">插件</span>
+    <h3 class="ark-card__title">插件机制全解</h3>
+    <p class="ark-card__desc">plugin.json、前端页面、Rust 命令、数据库迁移与设置面板。</p>
+  </a>
+  <a class="ark-card" href="/conventions/pitfalls/">
+    <span class="ark-card__kicker">约定</span>
+    <h3 class="ark-card__title">易错点清单</h3>
+    <p class="ark-card__desc">已修复过、不要回退的坑，以及 macOS 端口占用等高频问题。</p>
+  </a>
+  <a class="ark-card" href="/release/automation/">
+    <span class="ark-card__kicker">发布</span>
+    <h3 class="ark-card__title">打包与在线更新</h3>
+    <p class="ark-card__desc">签名、清单 latest.json、GitHub Actions 自动发布与故障排查。</p>
+  </a>
+</div>

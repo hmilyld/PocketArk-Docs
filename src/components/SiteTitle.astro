@@ -1,0 +1,49 @@
+---
+const { siteTitle, siteTitleHref } = Astro.locals.starlightRoute;
+---
+
+<a href={siteTitleHref} class="site-title sl-flex">
+  <svg class="site-logo" width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <rect class="hull" x="3.25" y="7.25" width="25.5" height="20.5" rx="5" stroke-width="2.5"></rect>
+    <path
+      class="hull"
+      d="M11 7V5.5A2.5 2.5 0 0 1 13.5 3h5A2.5 2.5 0 0 1 21 5.5V7"
+      stroke-width="2.5"></path>
+    <circle class="port" cx="16" cy="17.5" r="3.4" stroke-width="2.5"></circle>
+    <path
+      class="port"
+      d="M16 13.4v-2.1M16 23.7v-2.1M19.6 17.5h2.1M10.3 17.5h2.1"
+      stroke-width="2.5"
+      stroke-linecap="round"></path>
+  </svg>
+  <span class="site-title__text" translate="no">{siteTitle}</span>
+</a>
+
+<style>
+  .site-title {
+    align-items: center;
+    gap: var(--sl-nav-gap);
+    font-family: var(--ark-font-display);
+    font-size: var(--sl-text-h4);
+    font-weight: 600;
+    color: var(--sl-color-white);
+    text-decoration: none;
+    white-space: nowrap;
+    min-width: 0;
+  }
+  .site-logo {
+    flex: none;
+    height: calc(var(--sl-nav-height) - 2 * var(--sl-nav-pad-y));
+    width: auto;
+  }
+  .site-logo .hull {
+    stroke: var(--sl-color-gray-2);
+  }
+  .site-logo .port {
+    stroke: var(--sl-color-accent);
+  }
+  .site-title__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

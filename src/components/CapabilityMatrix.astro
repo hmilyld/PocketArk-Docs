@@ -1,0 +1,283 @@
+---
+interface Capability {
+  name: { zh: string; en: string };
+  frontend: string;
+  rust: string;
+  desc: { zh: string; en: string };
+}
+
+const capabilities: Capability[] = [
+  {
+    name: { zh: 'IPC', en: 'IPC' },
+    frontend: '@/core/ipc',
+    rust: 'generate_handler',
+    desc: { zh: '类型安全的命令调用封装，禁止裸 invoke', en: 'Type-safe command calls; never call invoke directly' },
+  },
+  {
+    name: { zh: '事件总线', en: 'Event bus' },
+    frontend: '@/core/events',
+    rust: 'events.rs',
+    desc: { zh: '类型化事件，统一前缀', en: 'Typed events with a shared prefix' },
+  },
+  {
+    name: { zh: '日志', en: 'Logging' },
+    frontend: '@/core/logger',
+    rust: 'log',
+    desc: { zh: '双端统一写入应用日志目录', en: 'Unified logs across both runtimes' },
+  },
+  {
+    name: { zh: '错误', en: 'Errors' },
+    frontend: '@/core/errors',
+    rust: 'error.rs',
+    desc: { zh: 'AppError 规范化 + 全局提示', en: 'AppError normalization + global toasts' },
+  },
+  {
+    name: { zh: '数据库', en: 'Database' },
+    frontend: '@/core/db',
+    rust: 'db.rs',
+    desc: { zh: 'Drizzle(kdb) + CRUD + 作用域迁移', en: 'Drizzle (kdb) + CRUD + scoped migrations' },
+  },
+  {
+    name: { zh: 'HTTP', en: 'HTTP' },
+    frontend: '@/core/http',
+    rust: 'http.rs',
+    desc: { zh: 'reqwest，无 CORS；流式下载 + 代理', en: 'reqwest, no CORS; streaming download + proxy' },
+  },
+  {
+    name: { zh: '主题', en: 'Theme' },
+    frontend: '@/core/theme',
+    rust: 'set_window_appearance',
+    desc: { zh: '亮/暗/系统 + 主题色 + 字号', en: 'Light/dark/system + accent + font scale' },
+  },
+  {
+    name: { zh: '插件注册', en: 'Plugin registry' },
+    frontend: '@/core/plugins',
+    rust: 'plugins/mod.rs',
+    desc: { zh: '前后端构建期自动注册', en: 'Frontend & backend auto-registration at build time' },
+  },
+  {
+    name: { zh: '在线更新', en: 'Updater' },
+    frontend: '@/core/updater',
+    rust: 'updater.rs',
+    desc: { zh: 'tauri-plugin-updater + 静态清单', en: 'tauri-plugin-updater + static manifest' },
+  },
+  {
+    name: { zh: '系统通知', en: 'Notifications' },
+    frontend: '@/core/notify',
+    rust: 'tauri-plugin-notification',
+    desc: { zh: '权限申请 + 设置开关', en: 'Permission request + settings toggle' },
+  },
+  {
+    name: { zh: '开机自启', en: 'Autostart' },
+    frontend: '@/core/autostart',
+    rust: 'tauri-plugin-autostart',
+    desc: { zh: '系统为真相源', en: 'The OS is the source of truth' },
+  },
+  {
+    name: { zh: '数据库事务', en: 'Transactions' },
+    frontend: 'runInTransaction',
+    rust: 'db.rs',
+    desc: { zh: '单事务批量执行，失败回滚', en: 'Batch in one transaction; roll back on failure' },
+  },
+  {
+    name: { zh: '备份 / 恢复 / 重置', en: 'Backup / restore / reset' },
+    frontend: 'settings → 数据',
+    rust: 'db.rs',
+    desc: { zh: '恢复与重置后自动重启', en: 'Auto-restart after restore or reset' },
+  },
+  {
+    name: { zh: '设置导入 / 导出', en: 'Settings import/export' },
+    frontend: '@/core/settings-transfer',
+    rust: 'files.rs',
+    desc: { zh: '导出 JSON，导入后重启生效', en: 'Export JSON; import applies after restart' },
+  },
+  {
+    name: { zh: '诊断报告', en: 'Diagnostics' },
+    frontend: '@/core/diagnostics',
+    rust: 'diagnostics.rs',
+    desc: { zh: '环境信息 + 最近日志', en: 'Environment info + recent logs' },
+  },
+  {
+    name: { zh: '单实例', en: 'Single instance' },
+    frontend: '—',
+    rust: 'tauri-plugin-single-instance',
+    desc: { zh: '二次启动唤起主窗口并转发参数', en: 'Focus the window and forward args on relaunch' },
+  },
+  {
+    name: { zh: '应用内快捷键', en: 'In-app shortcuts' },
+    frontend: '@/core/shortcuts',
+    rust: '—',
+    desc: { zh: "registerShortcut('mod+k', fn)", en: "registerShortcut('mod+k', fn)" },
+  },
+  {
+    name: { zh: '全局快捷键', en: 'Global shortcuts' },
+    frontend: '@/core/global-shortcut',
+    rust: 'tauri-plugin-global-shortcut',
+    desc: { zh: '设置项驱动，唤起主窗口', en: 'Settings-driven; focus the main window' },
+  },
+  {
+    name: { zh: '搜索 / 命令面板', en: 'Search / command palette' },
+    frontend: '@/core/search',
+    rust: '—',
+    desc: { zh: 'Cmd/Ctrl+K 聚合导航与工具', en: 'Cmd/Ctrl+K aggregates nav and tools' },
+  },
+  {
+    name: { zh: '任务栏进度 / 徽标', en: 'Taskbar progress / badge' },
+    frontend: '@/core/taskbar',
+    rust: 'Tauri Window API',
+    desc: { zh: '进度 0–100 / Dock 徽标', en: 'Progress 0–100 / Dock badge' },
+  },
+  {
+    name: { zh: '后台任务', en: 'Background tasks' },
+    frontend: '@/core/tasks',
+    rust: 'tasks.rs',
+    desc: { zh: '取消令牌 + task:// 进度事件', en: 'Cancel tokens + task:// progress events' },
+  },
+  {
+    name: { zh: '打开内容', en: 'Open content' },
+    frontend: '@/core/open-with',
+    rust: 'open.rs',
+    desc: { zh: 'CLI / 深链接 / 拖拽统一分发', en: 'Unified CLI / deep-link / drop dispatch' },
+  },
+  {
+    name: { zh: '多窗口', en: 'Multi-window' },
+    frontend: '@/core/windows',
+    rust: 'capabilities/windows.json',
+    desc: { zh: 'openAppWindow()，label win-*', en: 'openAppWindow(), label win-*' },
+  },
+  {
+    name: { zh: '原生应用菜单', en: 'Native app menu' },
+    frontend: '@/core/events (app://menu)',
+    rust: 'menu.rs',
+    desc: { zh: 'macOS menubar / Win 窗口菜单', en: 'macOS menubar / Windows window menu' },
+  },
+  {
+    name: { zh: '平台探测', en: 'Platform detection' },
+    frontend: '@/core/platform.ts',
+    rust: '—',
+    desc: { zh: 'isMac：样式与快捷键修饰键差异', en: 'isMac: styling and modifier-key differences' },
+  },
+];
+
+const isEn = Astro.currentLocale === 'en';
+const prefix = isEn ? '/en' : '';
+const detailUrl = `${prefix}/architecture/capabilities/`;
+
+const layerOf = (c: Capability) => {
+  const hasFront = c.frontend !== '—';
+  const hasRust = c.rust !== '—';
+  if (hasFront && hasRust) return 'both';
+  return hasFront ? 'front' : 'rust';
+};
+
+const t = {
+  title: isEn ? 'Capability matrix' : '框架能力矩阵',
+  hint: isEn ? 'search / filter' : '可搜索 / 可筛选',
+  placeholder: isEn ? 'Search capability or entry point…' : '搜索能力或入口…',
+  all: isEn ? 'All' : '全部',
+  front: isEn ? 'Frontend' : '前端',
+  rust: isEn ? 'Rust' : 'Rust',
+  colCap: isEn ? 'Capability' : '能力',
+  colFront: isEn ? 'Frontend entry' : '前端入口',
+  colRust: isEn ? 'Rust' : 'Rust',
+  colDesc: isEn ? 'What it does' : '说明',
+  empty: isEn ? 'No capability matches. Try another keyword.' : '没有匹配的能力，换个关键词试试。',
+  detail: isEn ? 'Open the capability reference' : '查看能力参考',
+};
+
+const rows = capabilities.map((c) => {
+  const layer = layerOf(c);
+  const search = [
+    c.name.zh,
+    c.name.en,
+    c.frontend,
+    c.rust,
+    c.desc.zh,
+    c.desc.en,
+  ]
+    .join(' ')
+    .toLowerCase();
+  return { ...c, layer, search };
+});
+---
+
+<section class="cam" aria-labelledby="cam-title" data-cam>
+  <div class="cam__head">
+    <h2 class="cam__title" id="cam-title">{t.title}</h2>
+    <span class="cam__hint">{t.hint}</span>
+  </div>
+
+  <div class="cam__controls">
+    <input class="cam__search" type="search" placeholder={t.placeholder} aria-label={t.placeholder} data-cam-search />
+    <div class="cam__filters" role="group" aria-label={t.hint}>
+      <button class="cam__filter" type="button" aria-pressed="true" data-cam-filter="all">{t.all}</button>
+      <button class="cam__filter" type="button" aria-pressed="false" data-cam-filter="front">{t.front}</button>
+      <button class="cam__filter" type="button" aria-pressed="false" data-cam-filter="rust">{t.rust}</button>
+    </div>
+  </div>
+
+  <div class="cam__scroll">
+    <table class="cam__table">
+      <thead>
+        <tr>
+          <th>{t.colCap}</th>
+          <th>{t.colFront}</th>
+          <th>{t.colRust}</th>
+          <th class="cam__col-desc">{t.colDesc}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((c) => (
+            <tr class="cam__row" data-cam-row data-layer={c.layer} data-search={c.search}>
+              <td>
+                <a href={detailUrl} title={t.detail}>
+                  <span class="cam__name">{isEn ? c.name.en : c.name.zh}</span>
+                </a>
+              </td>
+              <td class="cam__entry">{c.frontend}</td>
+              <td class="cam__entry cam__entry--rust">{c.rust}</td>
+              <td class="cam__desc cam__col-desc">{isEn ? c.desc.en : c.desc.zh}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <p class="cam__empty" data-cam-empty hidden>{t.empty}</p>
+</section>
+
+<script>
+  const roots = document.querySelectorAll<HTMLElement>('[data-cam]');
+  roots.forEach((root) => {
+    const search = root.querySelector<HTMLInputElement>('[data-cam-search]');
+    const filters = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-cam-filter]'));
+    const rows = Array.from(root.querySelectorAll<HTMLElement>('[data-cam-row]'));
+    const empty = root.querySelector<HTMLElement>('[data-cam-empty]');
+    let active = 'all';
+
+    const apply = () => {
+      const q = (search?.value ?? '').trim().toLowerCase();
+      let visible = 0;
+      rows.forEach((row) => {
+        const matchesQuery = !q || (row.dataset.search ?? '').includes(q);
+        const layer = row.dataset.layer ?? '';
+        const matchesLayer =
+          active === 'all' || layer === 'both' || (active === 'front' && layer === 'front') || (active === 'rust' && layer === 'rust');
+        const show = matchesQuery && matchesLayer;
+        row.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (empty) empty.hidden = visible !== 0;
+    };
+
+    search?.addEventListener('input', apply);
+    filters.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        active = btn.dataset.camFilter ?? 'all';
+        filters.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        apply();
+      });
+    });
+  });
+</script>

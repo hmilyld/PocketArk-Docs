@@ -1,0 +1,70 @@
+---
+title: PocketArk Docs
+description: Documentation for the PocketArk desktop app base framework — from clone to rename, from your first plugin to a signed release.
+template: splash
+hero:
+  title: Turn a desktop toolbox into your own software.
+  tagline: PocketArk is a reusable desktop app base framework (Tauri 2 + Vue 3 + TypeScript + Tailwind 4). Windows, tray, navigation, theming, SQLite, settings, logging, errors, HTTP and auto-update are done; you only write the tools.
+  actions:
+    - text: Start from zero
+      link: /en/start/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: Build a plugin
+      link: /en/plugins/create/
+      icon: add-document
+      variant: secondary
+    - text: See the architecture
+      link: /en/architecture/overview/
+      icon: open-book
+      variant: minimal
+---
+
+import CapabilityMatrix from '../../../components/CapabilityMatrix.astro';
+
+<p class="ark-section-title">Recommended path</p>
+
+<div class="ark-cards ark-reveal">
+  <a class="ark-card" href="/en/start/installation/">
+    <span class="ark-card__kicker">01 · Setup</span>
+    <h3 class="ark-card__title">Install and run</h3>
+    <p class="ark-card__desc">Prepare Node / pnpm / Rust, compile once and launch the sample app locally.</p>
+  </a>
+  <a class="ark-card" href="/en/start/scaffold/">
+    <span class="ark-card__kicker">02 · Make it yours</span>
+    <h3 class="ark-card__title">Become your software</h3>
+    <p class="ark-card__desc">Rename, swap the dual-source icons, remove sample plugins.</p>
+  </a>
+  <a class="ark-card" href="/en/plugins/create/">
+    <span class="ark-card__kicker">03 · Extend</span>
+    <h3 class="ark-card__title">Build your first plugin</h3>
+    <p class="ark-card__desc">Generate a skeleton, edit plugin.json and a view; both ends auto-register.</p>
+  </a>
+</div>
+
+<CapabilityMatrix />
+
+<p class="ark-section-title">Keep reading</p>
+
+<div class="ark-cards ark-reveal">
+  <a class="ark-card" href="/en/architecture/overview/">
+    <span class="ark-card__kicker">Architecture</span>
+    <h3 class="ark-card__title">Layout and boot order</h3>
+    <p class="ark-card__desc">How the layers fit, the startup chain, and what to reference but never edit.</p>
+  </a>
+  <a class="ark-card" href="/en/plugins/overview/">
+    <span class="ark-card__kicker">Plugins</span>
+    <h3 class="ark-card__title">The plugin system</h3>
+    <p class="ark-card__desc">plugin.json, views, Rust commands, migrations and settings.</p>
+  </a>
+  <a class="ark-card" href="/en/conventions/pitfalls/">
+    <span class="ark-card__kicker">Conventions</span>
+    <h3 class="ark-card__title">Pitfalls</h3>
+    <p class="ark-card__desc">Regressions to avoid and the macOS port problem.</p>
+  </a>
+  <a class="ark-card" href="/en/release/automation/">
+    <span class="ark-card__kicker">Release</span>
+    <h3 class="ark-card__title">Ship and update</h3>
+    <p class="ark-card__desc">Signing, latest.json, GitHub Actions and troubleshooting.</p>
+  </a>
+</div>

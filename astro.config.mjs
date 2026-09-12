@@ -1,12 +1,15 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { unified } from '@astrojs/markdown-remark';
 
 import rehypeTableWrapper from './src/plugins/rehype-table-wrapper.mjs';
 
 export default defineConfig({
   site: 'https://pocketark-docs.example.com',
   markdown: {
-    rehypePlugins: [rehypeTableWrapper],
+    processor: unified({
+      rehypePlugins: [rehypeTableWrapper],
+    }),
   },
   integrations: [
     starlight({

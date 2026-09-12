@@ -5,7 +5,7 @@ import { unified } from '@astrojs/markdown-remark';
 import rehypeTableWrapper from './src/plugins/rehype-table-wrapper.mjs';
 
 export default defineConfig({
-  site: 'https://pocketark-docs.example.com',
+  site: 'https://pocketark.hmilyld.com',
   markdown: {
     processor: unified({
       rehypePlugins: [rehypeTableWrapper],

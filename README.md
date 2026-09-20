@@ -22,8 +22,9 @@ pnpm check          # Astro 类型 / 内容诊断
 - **产品化主题**：直接沿用应用自身的 token（`--sl-color-*` / `--ark-*`）、发丝线、
   紧凑圆角与等宽坐标；标题 Space Grotesk、正文 IBM Plex Sans、代码 JetBrains Mono，
   中文走系统字体。字体自托管在 `@fontsource-variable`。
-- **能力矩阵**：落地页可搜索 / 筛选的 25 项框架能力一览（数据与 PocketArk 的
+- **能力矩阵**：落地页可搜索 / 筛选的 26 项框架能力一览（数据与 PocketArk 的
   `AGENTS.md` 能力索引一致）。
+- **设计规范**：与上游 `docs/design*.md` 对齐的共享核心、macOS / Windows 平台层与组件附录。
 - **站内搜索**：Starlight 内置 Pagefind。
 
 ## 目录结构

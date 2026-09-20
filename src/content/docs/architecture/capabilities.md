@@ -4,7 +4,7 @@ description: 前端 core/ 与 Rust 侧全部框架能力一览：入口、模块
 ---
 
 PocketArk 的框架能力按模块划分，插件**只引用、不修改**。下表是全部能力的事实源，
-可在[落地页](/zh/)用「能力矩阵」按前端 / Rust 筛选搜索。
+可在[落地页](/)用「能力矩阵」按前端 / Rust 筛选搜索。
 
 | 能力 | 前端入口 | Rust | 说明 |
 | --- | --- | --- | --- |
@@ -13,7 +13,7 @@ PocketArk 的框架能力按模块划分，插件**只引用、不修改**。下
 | 日志 | `@/core/logger` | `log` | 双端统一，接管 console |
 | 错误 | `@/core/errors` | `error.rs` | `AppError{code,message}` 规范化 + 全局提示 |
 | 数据库 | `@/core/db` | `db.rs` | Drizzle(kdb) + 通用 CRUD + 作用域迁移 |
-| HTTP | `@/core/http` | `http.rs` | reqwest，无 CORS；`download()` 流式下载 + 进度 |
+| HTTP | `@/core/http` | `http.rs` | reqwest，无 CORS；`send()` 高级（重定向 / SSL / 超时 / cookie / multipart / 二进制 / 取消）；`download()` 流式下载 + 进度；代理设置驱动 |
 | 主题 | `@/core/theme` | `set_window_appearance` | 亮 / 暗 / 跟系统 + 主题色 + 字号 |
 | 插件注册 | `@/core/plugins` | `plugins/mod.rs` | 前后端构建期自动注册 |
 | 在线更新 | `@/core/updater` | `updater.rs` | tauri-plugin-updater + 静态清单 |
@@ -33,6 +33,7 @@ PocketArk 的框架能力按模块划分，插件**只引用、不修改**。下
 | 多窗口 | `@/core/windows` | `capabilities/windows.json` | `openAppWindow()`，label `win-*` |
 | 原生应用菜单 | `@/core/events`（`app://menu`） | `menu.rs` | macOS menubar / Win 窗口菜单 |
 | 平台探测 | `@/core/platform.ts` | — | `isMac`（样式与快捷键修饰键差异） |
+| 生命周期钩子 | — | `lifecycle.rs` | 启动前 / 后、退出前 / 后 SPI；fork 在 `src-tauri/local/lifecycle.rs` 实现即自动挂载（见[生命周期钩子](/architecture/lifecycle/)） |
 
 :::note
 新增框架能力时，需要同步：前端 `src/core/`、Rust `src-tauri/src/`、

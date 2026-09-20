@@ -112,7 +112,7 @@ pnpm release -- --base-url https://<域名> --version 0.2.0 \
 ## base 与 fork 的分工
 
 - **base**：`scripts/release.mjs`、`.github/workflows/release-reusable.yml`（可复用）、发布文档。
-- **fork**：`.github/workflows/release.yml`（caller）、密钥 / 变量、`LOCAL.md` 中的预取资源与编译依赖。
+- **fork**：`.github/workflows/release.yml`（caller）、密钥 / 变量、`docs/local.md` 中的预取资源与编译依赖。
 - **同步**：base 改动后 fork 执行 `git merge upstream/main`。
 
 ## 可复用 workflow 参考

@@ -28,8 +28,21 @@ webview 内任意代码均可执行任意 SQL / 发起任意请求。必须保�
 - `ToolShell` 只提供页头 + 全幅容器；居中列 / 分栏在页面内用原生 Tailwind 栅格
   （`grid grid-cols-12` + `col-start-*` / `col-span-*`），**禁止 `mx-auto max-w-*` 居中容器**。
 - 居中列必须偶数跨距（12 − 跨距为偶数）。
+- 每个功能模块必须用 `@/components/tool/Panel` 包裹，**禁止裸露模块、禁止在 Panel 内叠卡片**。
+- `bg-console` 必须配 `text-console-foreground*`。
 - 新 registry 组件若用裸 `data-checked:` / `data-open:` 等布尔变体，需转成
-  `data-[state=...]:`（reka-ui 2.10 只输出后者）。
+  `data-[state=...]:`（reka-ui 2.10 只输出后者）；`TabsList` 横向高度被 group 变体钉死，需内联样式覆盖。
+
+## 窗口材质
+
+启用窗口材质后 `set_window_background` 不做实色打底（否则盖住材质），防白闪靠**前端不透明底**
+保证；勿删 `src-tauri/src/lib.rs` 里 `VIBRANCY_ACTIVE` 的提前返回。
+
+## 预览夹具
+
+插件夹具只放 `plugins/<id>/frontend/preview.ts`（默认导出 `Record<命令名, 返回值>`，dev 下由预览桥
+glob 并入），**不要**写进 `src/dev/preview-bridge.ts`（base 不接受 fork 插件名）。预览桥对未知业务
+命令返回 `null`（非数组），列表命令用 `?? []` 容错，否则浏览器预览白屏。
 
 ## macOS dev 端口占用
 
@@ -71,4 +84,4 @@ chmod 755 "${TMPDIR}tauri-stop-dev-processes.sh"
 ## 本地层编译依赖（ocr-rs 等）
 
 这类重依赖属 fork 本地层，相关编译问题（macOS `CXXFLAGS`、Windows libclang）由 fork 自行处理
-并记录在 `LOCAL.md`；base 不含这些依赖，无此问题。
+并记录在 `docs/local.md`；base 不含这些依赖，无此问题。

@@ -50,6 +50,9 @@ astro.config.mjs           # Starlight、i18n、sidebar、markdown 处理器
   系统 CJK 字体（不下载数 MB 中文字体）。
 - **能力矩阵数据**：`src/components/CapabilityMatrix.astro` 的能力清单需与 PocketArk 的
   `AGENTS.md`「框架能力索引」保持一致；上游新增能力时同步更新。
+- **与上游文档对齐**：站内「设计规范」（`design/*`）对应上游 `docs/design*.md`，
+  「生命周期钩子」对应 `docs/lifecycle.md`，「本地层」对应 `docs/local.md`；
+  上游这些文档变更时同步本资料站。
 - **frontmatter 引号**：`description` 等字段含 `:` 时必须用引号包裹，否则 YAML 解析失败。
 
 ## 内容规范

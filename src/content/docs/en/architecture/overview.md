@@ -25,28 +25,36 @@ src/
 │   ├── notify/ autostart/ global-shortcut/ shortcuts/ search/
 │   ├── tasks/ taskbar/ open-with/ windows/ diagnostics/
 │   └── settings-transfer/ updater/ plugins/
-├── components/        # ★ ToolShell + ui/ (shadcn-vue generated components)
+├── components/        # ★ ToolShell + tool/Panel (module panel)
+│   ├── settings/      #   SettingsSection / SettingsRow / SettingsField (settings single source of truth)
+│   ├── native/        #   EmptyState / LoadingState / ErrorState / FormRow / Segmented, …
+│   └── ui/            #   shadcn-vue generated components (CLI-managed; styles yes, structure no)
 ├── content/           # about / changelog (Markdown, read by settings)
+├── dev/               # preview bridge (dev + non-Tauri only; render in a browser for walkthroughs)
 └── stores/            # Pinia (global settings)
 
 plugins/               # ★ your tools live here (one directory = one plugin)
 ├── _template/         #   new-plugin template (`_` prefix, not registered)
-├── hello-world/       #   example plugin (multi-tool sample)
+├── hello-world/       #   example plugin (multi-tool sample, 8 tools across the full stack)
 └── system/            #   system tools (data maintenance, frontend-only)
 
 src-tauri/
-├── build.rs           # scans plugins/ to register commands and aggregate migrations
+├── build.rs           # scans plugins/ to register commands and aggregate migrations; mounts local lifecycle hooks
 ├── framework-commands.json  # framework command list (single source of truth)
+├── local/             # ★ local-layer code (fork-owned; drop lifecycle.rs in and it mounts)
+├── local-resources/   # ★ local-layer resources (fork-owned; absent in base)
 └── src/
     ├── lib.rs         # assembly: plugin registration / tray / menu / single instance / close behavior
     ├── error.rs       # AppError (every command returns Result<T, AppError>)
     ├── events.rs      # event-name constants (synced with frontend core/events)
+    ├── lifecycle.rs   # lifecycle-hook SPI contract and call sites
     ├── db.rs http.rs updater.rs tasks.rs open.rs menu.rs
     ├── diagnostics.rs files.rs tray.rs
     └── plugins/mod.rs # generated plugin registration (do not edit)
 
-scripts/               # scaffold / create-plugin / gen-icons / gen-commands / ...
-LOCAL.md               # local-layer notes (fork-owned)
+scripts/               # scaffold / create-plugin / gen-icons / gen-commands / release
+  local/               # ★ local-layer scripts (resource downloads; skipped in CI)
+docs/                  # ★ specs and guides (design spec, local layer, lifecycle; index in docs/README.md)
 ```
 
 ## Boot order
@@ -56,7 +64,9 @@ The frontend boot chain is fixed in `src/main.ts`:
 **logging → error handling → settings → theme → plugin registration (`setup(ctx)` hooks) → router → mount**
 
 On the Rust side, `lib.rs` assembles plugin command registration, the system tray, the native menu,
-single-instance handling and close behavior.
+single-instance handling and close behavior, and once initialization is ready it calls the
+[lifecycle hooks](/en/architecture/lifecycle/) (`before_start` / `after_start`); `RunEvent` drives
+`before_exit` / `after_exit`.
 
 ## Framework behaviors you get for free
 
@@ -71,6 +81,12 @@ single-instance handling and close behavior.
 - **Theming**: light / dark / system (dark by default) + six accents; three root font-size steps
   (small 13 / normal 14 / large 15).
 - **HTTP**: a Rust reqwest singleton (rustls, cookie session, 10 redirects, 30 s timeout, 10 MB cap);
-  call `http.getJson<T>(url)` from the frontend.
+  call `http.getJson<T>(url)` from the frontend. `http.send()` is the advanced primitive (redirect /
+  SSL / timeout / cookie / multipart / binary / cancel), and `http.download()` streams with progress.
+- **Window material**: macOS semantic materials (sidebar / toolbar / overlays) and Windows Mica Alt,
+  each with an opaque fallback; every visual value comes from tokens — see the
+  [design spec](/en/design/overview/).
+- **Lifecycle hooks**: a fork implements `AppLifecycle` in `src-tauri/local/lifecycle.rs` to intercept
+  startup / exit.
 
 See the full list in the [capability matrix](/en/architecture/capabilities/).

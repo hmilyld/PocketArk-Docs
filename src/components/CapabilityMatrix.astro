@@ -41,7 +41,7 @@ const capabilities: Capability[] = [
     name: { zh: 'HTTP', en: 'HTTP' },
     frontend: '@/core/http',
     rust: 'http.rs',
-    desc: { zh: 'reqwest，无 CORS；流式下载 + 代理', en: 'reqwest, no CORS; streaming download + proxy' },
+    desc: { zh: 'reqwest，无 CORS；send 高级 + 流式下载 + 代理', en: 'reqwest, no CORS; send() + streaming download + proxy' },
   },
   {
     name: { zh: '主题', en: 'Theme' },
@@ -156,6 +156,15 @@ const capabilities: Capability[] = [
     frontend: '@/core/platform.ts',
     rust: '—',
     desc: { zh: 'isMac：样式与快捷键修饰键差异', en: 'isMac: styling and modifier-key differences' },
+  },
+  {
+    name: { zh: '生命周期钩子', en: 'Lifecycle hooks' },
+    frontend: '—',
+    rust: 'lifecycle.rs',
+    desc: {
+      zh: '启动 / 退出四环节 SPI，fork 按需实现',
+      en: 'Startup/exit SPI; forks implement on demand',
+    },
   },
 ];
 

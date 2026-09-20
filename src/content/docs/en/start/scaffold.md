@@ -43,7 +43,7 @@ If you prefer to edit by hand, this is the exact list the script covers:
 | `src-tauri/src/main.rs` | `pocketark_lib::run()` → new lib name |
 | `package.json` | `name` |
 | `src/core/theme/index.ts` | `DEFAULT_THEME` / `DEFAULT_ACCENT` (optional) |
-| `README.md`, `START.md`, `AGENTS.md`, `src/content/about.md` | your own intro and titles |
+| `README.md`, `docs/start.md`, `AGENTS.md`, `src/content/about.md` | your own intro and titles |
 | `index.html` | `<title>` |
 
 The UI (sidebar / top bar) and tray tooltip read `productName` **dynamically** — no code changes needed.
@@ -78,7 +78,7 @@ The base repository ships two built-in plugins. Keep or remove as needed:
 
 | Plugin | Notes | Advice |
 | --- | --- | --- |
-| `hello-world` | Full-chain demo (Rust / SQLite / HTTP / layout), 5 tools | Remove for real use |
+| `hello-world` | Full-chain demo (Rust / SQLite / HTTP / layout), 8 tools | Remove for real use |
 | `system` | Data maintenance (frontend-only, built-in) | Keep |
 
 ```bash

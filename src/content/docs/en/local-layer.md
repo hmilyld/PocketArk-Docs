@@ -14,6 +14,7 @@ repository only keeps this convention documented.
 | Personal plugins (both ends) | `plugins/<id>/` (auto-registered at build time, no manual registration) |
 | Personal Rust dependencies | the `# ── local plugin deps (fork-owned) ──` section at the end of `src-tauri/Cargo.toml` |
 | Personal assets (fonts / models / …) | `src-tauri/local-resources/` |
+| Lifecycle hook implementation | `src-tauri/local/lifecycle.rs` (implements `AppLifecycle`; see [Lifecycle hooks](/en/architecture/lifecycle/)) |
 | Personal download / build scripts | `scripts/local/` (`scripts/prepare.mjs` calls `scripts/local/prepare.mjs` automatically) |
 | Extra webview permissions | `src-tauri/capabilities/local.json` (auto-discovered by Tauri; absent in base) |
 

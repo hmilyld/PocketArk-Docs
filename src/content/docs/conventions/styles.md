@@ -3,10 +3,19 @@ title: 样式、主题与代码风格
 description: 语义色、lucide 图标、主题三处同步与 prettier 代码风格。
 ---
 
+完整 UI 规范（token、组件语义、三态、文案、反例清单）见[设计规范 · 共享核心](/design/overview/)，
+机器校验由 `pnpm lint` 里的 `scripts/lint-design.mjs` 承担。本页只列常用速查。
+
 ## 样式
 
 使用 shadcn-vue 语义色（`bg-primary`、`text-muted-foreground` 等），**禁止硬编码色值**。
 已有 `text-success` / `text-warning` / `text-info`、`bg-console` 等 token。
+
+- 一屏最多两级表面（base → card），**禁止卡片套卡片**；子分组用分隔线 + 标题 + 间距。
+- 边框统一 1px hairline（`border`），不要混用 `border-border`；除浮层外禁止 `rounded-xl`。
+- `bg-console` 必须配 `text-console-foreground*`，否则深色底上文字不可读。
+- 焦点环唯一写法：`focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/60`。
+- 工具页每个功能模块用 `@/components/tool/Panel` 包裹，不要裸露模块或在 Panel 内叠卡片。
 
 ## 图标
 

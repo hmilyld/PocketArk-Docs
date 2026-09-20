@@ -14,7 +14,7 @@ frontend / Rust.
 | Logging | `@/core/logger` | `log` | Unified logging, console intercepted |
 | Errors | `@/core/errors` | `error.rs` | `AppError{code,message}` normalization + global toasts |
 | Database | `@/core/db` | `db.rs` | Drizzle (kdb) + generic CRUD + scoped migrations |
-| HTTP | `@/core/http` | `http.rs` | reqwest, no CORS; `download()` streaming + progress |
+| HTTP | `@/core/http` | `http.rs` | reqwest, no CORS; `send()` advanced (redirect / SSL / timeout / cookie / multipart / binary / cancel); `download()` streaming + progress; proxy-driven |
 | Theme | `@/core/theme` | `set_window_appearance` | Light / dark / system + accent + font scale |
 | Plugin registry | `@/core/plugins` | `plugins/mod.rs` | Build-time auto-registration, both ends |
 | Auto-update | `@/core/updater` | `updater.rs` | tauri-plugin-updater + static manifest |
@@ -34,6 +34,7 @@ frontend / Rust.
 | Multi-window | `@/core/windows` | `capabilities/windows.json` | `openAppWindow()`, label `win-*` |
 | Native app menu | `@/core/events` (`app://menu`) | `menu.rs` | macOS menubar / Windows window menu |
 | Platform detection | `@/core/platform.ts` | — | `isMac` (styling and modifier-key differences) |
+| Lifecycle hooks | — | `lifecycle.rs` | Before/after start and exit SPI; a fork implements `src-tauri/local/lifecycle.rs` and it mounts automatically (see [Lifecycle hooks](/en/architecture/lifecycle/)) |
 
 :::note
 When you add a capability, update all of: the frontend `src/core/`, Rust `src-tauri/src/`,

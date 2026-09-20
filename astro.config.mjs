@@ -54,7 +54,18 @@ export default defineConfig({
           items: [
             'architecture/overview',
             'architecture/capabilities',
+            'architecture/lifecycle',
             'architecture/security',
+          ],
+        },
+        {
+          label: '设计规范',
+          translations: { en: 'Design' },
+          items: [
+            'design/overview',
+            'design/macos',
+            'design/windows',
+            'design/appendix',
           ],
         },
         {

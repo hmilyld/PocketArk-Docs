@@ -118,7 +118,7 @@ pnpm release -- --base-url https://<domain> --version 0.2.0 \
 
 - **Base**: `scripts/release.mjs`, `.github/workflows/release-reusable.yml` (reusable) and the docs.
 - **Fork**: `.github/workflows/release.yml` (caller), keys / variables, and the prefetched assets and
-  compilation dependencies documented in `LOCAL.md`.
+  compilation dependencies documented in `docs/local.md`.
 - **Sync**: after base changes, run `git merge upstream/main` in the fork.
 
 ## Reusable workflow reference

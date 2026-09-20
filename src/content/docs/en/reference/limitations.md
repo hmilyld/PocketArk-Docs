@@ -10,4 +10,6 @@ description: Limitations explicitly present in the current version and future ex
 - **Bundle size warning**: the main bundle is split, but importing all `@lucide/vue` icons makes the
   `vendor-ui` chunk large (the inherent cost of resolving icons by name).
 - **Not tested on Windows**: the build-time `#[path]` values use forward slashes and should work on
-  Windows, but have not been verified there yet.
+  Windows, but have not been verified there yet; the values in the
+  [Windows platform design layer](/en/design/windows/) likewise come from official docs and have not
+  been visually verified on a real machine.

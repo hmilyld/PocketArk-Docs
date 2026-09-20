@@ -10,4 +10,5 @@ description: 当前版本明确存在的限制与后续扩展点。
 - **打包体积告警**：主包已拆分，但 `@lucide/vue` 全量图标使 `vendor-ui` 分块较大
   （按名解析图标的固有开销）。
 - **Windows 未实测**：插件构建期的 `#[path]` 以正斜杠生成，理论上 Windows 可用，
-  但尚未在 Windows 实测。
+  但尚未在 Windows 实测；[Windows 平台设计层](/design/windows/) 的取值同样来自官方文档、
+  尚未做真机视觉验证。

@@ -30,6 +30,22 @@ const res = await http.postJson<Res>('https://api.example.com/items', { title: '
 特性：全局单例、rustls、cookie 会话、10 次重定向、30s 超时、10MB 响应上限；
 `http.download()` 支持流式下载到文件并回传进度；代理设置驱动。
 
+需要自定义重定向、SSL 校验、超时、cookie 模式、multipart 上传、二进制响应或取消时，
+用高级原语 `http.send()`（Rust `http_send`，与采集用全局 Client 隔离）：
+
+```ts
+import { http } from '@/core/http';
+
+const res = await http.send({
+  method: 'POST',
+  url: 'https://api.example.com/upload',
+  redirect: 'manual',
+  verifySsl: false,
+  body: { type: 'multipart', parts: [{ name: 'file', filePath: '/tmp/a.png' }] },
+  taskId: 'upload-1', // 配合 http.cancel('upload-1') 取消
+});
+```
+
 :::note[编码]
 HTTP 响应体按 UTF-8 解码（非 UTF-8 页面如 GBK 为后续扩展点）；
 二进制资源请用 `http.download()` 流式下载到文件。

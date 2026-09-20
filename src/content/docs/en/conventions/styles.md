@@ -3,10 +3,20 @@ title: Styling, theming and code style
 description: Semantic colors, lucide icons, the three-place theme sync, and prettier code style.
 ---
 
+The full UI spec (tokens, component semantics, three states, copy, anti-patterns) lives in the
+[design spec](/en/design/overview/); machine checks run in `scripts/lint-design.mjs` via `pnpm lint`.
+This page is a quick reference.
+
 ## Styling
 
 Use shadcn-vue semantic colors (`bg-primary`, `text-muted-foreground`, …); **never hard-code color
 values**. Tokens like `text-success` / `text-warning` / `text-info` and `bg-console` already exist.
+
+- At most two surface levels per screen (base → card); **no card-in-card**; subgroups use a divider + title + spacing.
+- Borders are a 1px hairline (`border`); do not mix in `border-border`; `rounded-xl` is only for overlays.
+- `bg-console` must be paired with `text-console-foreground*`, or text is unreadable on the dark background.
+- The only focus-ring expression: `focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/60`.
+- Wrap every tool-page module in `@/components/tool/Panel`; never expose a module or nest a card inside a Panel.
 
 ## Icons
 

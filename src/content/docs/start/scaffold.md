@@ -43,7 +43,7 @@ pnpm tauri dev      # 以新名字运行
 | `src-tauri/src/main.rs` | `pocketark_lib::run()` → 新 lib 名 |
 | `package.json` | `name` |
 | `src/core/theme/index.ts` | `DEFAULT_THEME` / `DEFAULT_ACCENT`（可选） |
-| `README.md`、`START.md`、`AGENTS.md`、`src/content/about.md` | 自我介绍与标题 |
+| `README.md`、`docs/start.md`、`AGENTS.md`、`src/content/about.md` | 自我介绍与标题 |
 | `index.html` | `<title>` |
 
 前端界面（侧栏 / 顶栏）与托盘提示会**动态读取** `productName`，无需改代码。
@@ -76,7 +76,7 @@ base 仓库只自带两个内置插件，按需保留 / 删除：
 
 | 插件 | 说明 | 建议 |
 | --- | --- | --- |
-| `hello-world` | 演示全链路（Rust / SQLite / HTTP / 布局），5 个工具 | 正式使用可删 |
+| `hello-world` | 演示全链路（Rust / SQLite / HTTP / 布局），8 个工具 | 正式使用可删 |
 | `system` | 数据维护（前端-only，框架内置） | 保留 |
 
 ```bash

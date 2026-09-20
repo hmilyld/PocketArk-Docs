@@ -30,8 +30,24 @@ and **load no remote content**; treat plugins (local code) as the trusted bounda
   with the native Tailwind grid (`grid grid-cols-12` + `col-start-*` / `col-span-*`). An
   `mx-auto max-w-*` centered container is **forbidden**.
 - Centered columns must use an even span (12 − span is even).
+- Wrap every functional module in `@/components/tool/Panel`; **never expose a module or nest a card inside a Panel**.
+- `bg-console` must be paired with `text-console-foreground*`.
 - If a new registry component uses bare `data-checked:` / `data-open:` boolean variants, convert them to
-  `data-[state=...]:` (reka-ui 2.10 only emits the latter).
+  `data-[state=...]:` (reka-ui 2.10 only emits the latter); the horizontal `TabsList` height is pinned by
+  the group variant and needs an inline-style override.
+
+## Window material
+
+Once window material is enabled, `set_window_background` skips the opaque base coat (which would cover
+the material), so the white-flash guard relies on an **opaque frontend background**; do not remove the
+early return for `VIBRANCY_ACTIVE` in `src-tauri/src/lib.rs`.
+
+## Preview fixtures
+
+Plugin fixtures live only in `plugins/<id>/frontend/preview.ts` (default export
+`Record<commandName, returnValue>`, glob-merged by the preview bridge in dev). Do **not** put them in
+`src/dev/preview-bridge.ts` (base must not know fork plugin names). The bridge returns `null` (not an
+array) for unknown business commands; list commands must use `?? []` or the browser preview goes blank.
 
 ## macOS dev port in use
 
@@ -78,5 +94,5 @@ Upstream tauri#15098; remove this once the fix (PR #15108) is merged and the CLI
 ## Local-layer compilation dependencies (ocr-rs, etc.)
 
 Heavy dependencies like these belong to the fork's local layer. Compilation issues (macOS `CXXFLAGS`,
-Windows libclang) are handled by the fork and documented in `LOCAL.md`; base does not include them and
-has no such problems.
+Windows libclang) are handled by the fork and documented in `docs/local.md`; base does not include them
+and has no such problems.

@@ -30,7 +30,14 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/hmilyld/PocketArk-Docs/edit/main/',
       },
-      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/hmilyld/PocketArk' }],
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/hmilyld/PocketArk' },
+        {
+          icon: 'discourse',
+          label: 'PocketArk 论坛',
+          href: 'https://forum.hmilyld.com/c/pocketark',
+        },
+      ],
       head: [
         {
           tag: 'script',
@@ -110,6 +117,12 @@ export default defineConfig({
           label: '参考',
           translations: { en: 'Reference' },
           items: ['reference/faq', 'reference/limitations', 'reference/changelog'],
+        },
+        {
+          label: '论坛',
+          translations: { en: 'Forum' },
+          link: 'https://forum.hmilyld.com/c/pocketark',
+          attrs: { target: '_blank', rel: 'noopener noreferrer' },
         },
       ],
     }),
